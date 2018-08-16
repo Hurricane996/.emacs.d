@@ -6,6 +6,11 @@
 
 # Backup files
 *~
-
+# directories
+auto-save-list/
+backups/
+elpa/
+eshel/
+url/
 # Undo-tree save-files
 *.~undo-tree
