@@ -18,7 +18,6 @@
 )
 (use-package dracula-theme)
 (use-package helm)
-(use-package org-journal)
 (use-package json)
 (use-package projectile)
 (use-package helm-projectile)

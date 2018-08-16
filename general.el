@@ -28,12 +28,8 @@
 )
 (advice-add 'eshell-life-is-too-much :after 'kill-window-on-exit)
 (global-set-key (kbd "C-t") 'eshell-other-window)
-;;edit emacs config
-(defun open-init-el ()
-  (interactive)
-  (find-file-other-window "~/.emacs.d/init.el"))
-(global-set-key (kbd "C-o") 'open-init-el)
-(global-set-key (kbd "C-S-o") 'eval-buffer)
+;;allow fast eval
+(global-set-key (kbd "C-S-s") 'eval-buffer)
 
 ;;load under cursor
 (require 'ffap)
@@ -48,3 +44,9 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;;backup directory
 (setq backup-directory-alist '(("."."~/.emacs.d/backups/")))
+;;open files
+(global-unset-key (kbd "C-f") )
+(global-set-key (kbd "C-f e i") (lambda()(interactive)(find-file "~/.emacs.d/init.el")))
+(global-set-key (kbd "C-f e g") (lambda()(interactive)(find-file "~/.emacs.d/general.el")))
+(global-set-key (kbd "C-f e o") (lambda()(interactive)(find-file "~/.emacs.d/org-mode.el")))
+(global-set-key (kbd "C-f t") (lambda()(interactive)(find-file "~/org/todo.org")))
