@@ -1,0 +1,128 @@
+cd ~/Downloads/unison-2.51.2/
+;s
+ls
+vim Makefile 
+ls
+make test
+make install
+cd ~/bin
+ls
+unison
+./unison
+./unison -doc tutorial
+./unison -doc tutorial  | les
+./unison -doc tutorial  | less
+exit
+sudo su
+unison
+mkdir org
+cd ~
+mkdir org
+mv todo.org ~/todo.org
+mv todo.org org/todo.org
+ls
+cd org
+ls
+cd ..
+rm a.out aplay timer.c timer.c\~ todo.org\~
+ls
+cd org
+git init
+git add .
+git push
+touch git-daemon-export-ok
+ls /etc/sv
+cd /srv/www/apache/
+ls
+mkdir git
+git clone --bare ~/org/ org.git
+ls
+cd org.git
+cd ..
+cd org.git
+ls
+ls -A
+rm org.git
+ls
+cd ..
+rm org.git
+rm -r org.git
+cd git
+cd ~
+cd org
+git add .
+git commit
+git commit -m a
+rm git-daemon-export-ok 
+git add .
+git commit -m a
+cd /srv/www/apache/git
+ls
+cd ~/test
+cd ~
+mkdir test
+cd test
+git clone ssh://lani@192.168.1.2/org.git
+ls
+ls ~
+ls ~/org
+ls ~/org/*
+ls -a ~/org
+ls -a ~/org/.git
+git clone ssh://lani@192.168.1.2/org/.git
+git clone ssh://lani@192.168.1.2/org
+git clone ssh://lani@192.168.1.2/~/org
+ls
+cd org
+ls
+find-file todo.org
+find-file todo.org
+git add . && git commit && git push
+git add . && git commit -m a && git push
+mkdir /git
+sudo mkdir /git
+mkdir git
+rm -r git
+sudo mkdir /git
+ls /
+sudo chown /git lani:lani
+sudo chown lani:lani /git
+ls /git
+ls -l /git
+ls -l /
+git clone --bare ~/org /org
+git clone --bare ~/org /git/org.git
+git push
+cd org
+git push
+git remote add origin ssh://lani@192.168.1.2/git/org
+git push origin
+git push --set-upstream origin master
+git push
+find-file todo.org
+git add . 
+git commit -m a
+git push
+touch push.sh
+find-file push.sh
+./push.sh
+chmod 700 push.sh
+push.sh
+./push.sh
+find-file push.sh
+./push.sh
+sh ./push.sh
+cd ~/test
+ls
+rm org
+rm -rf org
+git clone ssh://lani@173.18.88.51:3022/git/org
+ls
+cd org
+find-file todo.org
+./push.sh
+sh ./push.sh
+cd ~/org
+git pull
+vim todo.org
+find-file todo.org 
