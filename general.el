@@ -46,3 +46,5 @@
 (global-set-key (kbd "C-k") 'kill-whole-line)
 ;;use y-or-n-p instead of yes-or-no-p
 (defalias 'yes-or-no-p 'y-or-n-p)
+;;backup directory
+(setq backup-directory-alist '(("."."~/.emacs.d/backups/")))

@@ -1,69 +1,3 @@
-cd ~/Downloads/unison-2.51.2/
-;s
-ls
-vim Makefile 
-ls
-make test
-make install
-cd ~/bin
-ls
-unison
-./unison
-./unison -doc tutorial
-./unison -doc tutorial  | les
-./unison -doc tutorial  | less
-exit
-sudo su
-unison
-mkdir org
-cd ~
-mkdir org
-mv todo.org ~/todo.org
-mv todo.org org/todo.org
-ls
-cd org
-ls
-cd ..
-rm a.out aplay timer.c timer.c\~ todo.org\~
-ls
-cd org
-git init
-git add .
-git push
-touch git-daemon-export-ok
-ls /etc/sv
-cd /srv/www/apache/
-ls
-mkdir git
-git clone --bare ~/org/ org.git
-ls
-cd org.git
-cd ..
-cd org.git
-ls
-ls -A
-rm org.git
-ls
-cd ..
-rm org.git
-rm -r org.git
-cd git
-cd ~
-cd org
-git add .
-git commit
-git commit -m a
-rm git-daemon-export-ok 
-git add .
-git commit -m a
-cd /srv/www/apache/git
-ls
-cd ~/test
-cd ~
-mkdir test
-cd test
-git clone ssh://lani@192.168.1.2/org.git
-ls
 ls ~
 ls ~/org
 ls ~/org/*
@@ -126,3 +60,69 @@ cd ~/org
 git pull
 vim todo.org
 find-file todo.org 
+cd ~
+git pull lani@173.18.88.51
+git pull lani@173.18.88.51/git/org
+git pull lani@173.18.88.51/git/org.git
+git pull lani@173.18.88.51/git/org/git
+git pull ssh://lani@173.18.88.51/git/org/git
+git pull ssh://lani@173.18.88.51/git/org
+ssh -p 3022 lani@173.18.88.51
+exit
+git pull ssh://lani@173.18.88.51:3022/git/org.git
+git pull ssh://lani@173.18.88.51:3022/git/org.git
+ssh lani@173.18.88.51:3022
+git pull ssh://lani@173.18.88.51:3022/git/org.git
+git pull ssh://lani@173.18.88.51:3022/git/org.git
+ssh -p 3022 lani@173.18.88.51
+git pull ssh://lani@173.18.88.51:3022/git/org.git
+ls
+git clone ssh://lani@173.18.88.51:3022/git/org.git
+ls
+ls org
+rm push.sh~
+vim todo.org
+:q
+find-file org/todo.org
+python main.py 
+python main.py http://www.bluefrogdm.com -r blog\|Blog heading_grabber
+python main.py -r blog\|Blog http://wwww.bluefrogdm.com  heading_grabber
+./main.py -r blog\|Blog http://wwww.bluefrogdm.com heading_grabber
+./main.py -r blog\|Blog https://www.bluefrogdm.com heading_grabber
+./main.py -r blog\|Blog https://www.bluefrogdm.com heading_grabber
+./main.py -r blog\|Blog https://www.bluefrogdm.com heading_grabber
+./main.py -r blog\|Blog https://www.bluefrogdm.com heading_grabber
+./main.py -r blog\|Blog https://www.bluefrogdm.com heading_grabber
+./main.py -r blog\|Blog https://www.bluefrogdm.com heading_grabber
+./main.py -r blog\|Blog https://www.bluefrogdm.com heading_grabber
+python main.py -r blog\|Blog http://wwww.bluefrogdm.com  heading_grabber
+python main.py -r blog\|Blog http://wwww.bluefrogdm.com  heading_grabber
+python main.py -r blog\|Blog http://www.bluefrogdm.com  heading_grabber
+find-file output.json
+ls
+python main.py -r blog\|Blog http://www.bluefrogdm.com  heading_grabber
+python main.py -r blog\|Blog http://www.bluefrogdm.com  heading_grabber
+find-file output.json 
+python main.py -r blog\|Blog http://www.bluefrogdm.com robots
+find-file output.json
+find-file output.json
+ls
+vim projectile-bookmarks.eld 
+find-file projectile-bookmarks.eld 
+git add .
+git commit
+git commit -m "Fixed json output"
+git push
+cd ~/.emacs.d/
+mkdir backups
+ls
+rm init.el~
+rm \#general.el\# 
+python
+exit
+git add .
+git commit
+git commit -m Added http:// support
+git commit -m "Added http:// support"
+git push
+exit
