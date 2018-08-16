@@ -17,44 +17,23 @@
   (require 'use-package)
 )
 
-;;;neotree
-;;;(use-package neotree)
-;;;(neotree-toggle)
-;;;(global-set-key (kbd "C-f") 'neotree-toggle)
-;;;(setq neo-show-hidden-files t)
-;;;(windmove-right)
-;;;dracula
 (use-package dracula-theme)
-;;;helm
 (use-package helm)
-
-(require 'helm)
-(require 'helm-config)
-
-(global-set-key (kbd "M-x") 'helm-M-x)
-(helm-mode 1)
-;;org-journal
 (use-package org-journal)
-(require 'org-journal)
-;;;
-;(use-package buffer-move)
-;(global-set-key (kbd "C-S-up") buf-move-up)
-;(global-set-key (kbd "C-S-down") buf-move-down)
-;(global-set-key (kbd "C-S-left") buf-move-left)
-;(global-set-key (kbd "C-S-right") buf-move-right)
-;;;json
 (use-package json)
-;;;projectile
 (use-package projectile)
 (use-package helm-projectile)
-(setq projectile-project-search-path '("~/"))
+(use-package magit)
+
+;;;helm
+(global-set-key (kbd "M-x") 'helm-M-x)
+(helm-mode 1)
+;;;projectile
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
-;;;magit
-(use-package magit)
 ;;;loading other config files
 (load "~/.emacs.d/general.el")
 (load "~/.emacs.d/org-mode.el")

@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/org/" "~/bfproject/BlueFrogWebScraper/" "~/")
+("~/.emacs.d/" "~/" "~/org/" "~/bfproject/BlueFrogWebScraper/")
