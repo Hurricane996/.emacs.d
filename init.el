@@ -25,7 +25,8 @@
  '(org-agenda-files (quote ("/home/lani/org/todo.org")))
  '(package-selected-packages
    (quote
-    (alect-themes alect-dark-alt alec-dark-alt sudo-edit rainbow-delimiters switch-window rainbow-mode avy magit helm-projectile projectile helm dracula-theme use-package))))
+    (swiper spaceline popup-kill-ring yasnippet-snippets yasnippet company-irony company alect-themes alect-dark-alt alec-dark-alt sudo-edit rainbow-delimiters switch-window rainbow-mode avy magit helm-projectile projectile helm dracula-theme use-package)))
+ '(size-indication-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
