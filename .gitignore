@@ -3,6 +3,8 @@
 
 # Auto Generated
 config.el
+*.eld
+tramp
 
 # Packaging
 .cask
