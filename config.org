@@ -167,6 +167,7 @@ k
 		  (lambda()(interactive)
 		    (when (get-buffer "config.org") (save-buffer "config.org"))
 		    (magit-call-git "add" "config.org")
+		    (magit-call-git "add" "snippets/*")
 		    (magit-call-git "commit" "-m" "Automagitally commited")
 		    (magit-call-git "push" "origin")
 		    (magit-refresh)))
