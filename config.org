@@ -1,3 +1,4 @@
+#+AUTHOR: Lani Willrich
 * Packages
 ** Helm 
 #+BEGIN_SRC emacs-lisp
@@ -48,6 +49,26 @@
 #+BEGIN_SRC emacs-lisp
   (use-package sudo-edit)
   (global-set-key (kbd "C-x M-f") 'sudo-edit)
+#+END_SRC
+** Company
+#+BEGIN_SRC emacs-lisp
+  (use-package company)
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 3)
+
+  (add-to-list 'company-backends 'company-elisp)
+  (add-to-list 'company-backends 'company-clang)
+
+  (add-hook 'emacs-lisp-mode-hook 'company-mode)
+  (add-hook 'c++-mode-hook 'company-mode)
+  (add-hook 'c-mode-hook 'company-mode)
+#+END_SRC
+** yasnippet
+#+BEGIN_SRC emacs-lisp
+  (use-package yasnippet)
+  (use-package yasnippet-snippets)
+  (yas-reload-all)
+  (yas-global-mode 1)
 #+END_SRC
 ** Other packages
 #+BEGIN_SRC emacs-lisp
@@ -171,3 +192,4 @@ k
 		    (magit-refresh)))
 
 #+END_SRC
+
