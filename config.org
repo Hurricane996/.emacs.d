@@ -157,10 +157,16 @@ k
 ** Configuration based keybinds
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x c e")
-                  (lambda()(interactive)(find-file "~/.emacs.d/config.org")))
+		  (lambda()(interactive)(find-file "~/.emacs.d/config.org")))
   (global-set-key (kbd "C-x c r")
-                  (lambda()(interactive)
-                    (when (get-buffer "config.org") (save-buffer "config.org"))
-                    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))))
-
+		  (lambda()(interactive)
+		    (when (get-buffer "config.org") (save-buffer "config.org"))
+		    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))))
+  (global-set-key (kbd "C-x c p")
+		  (lambda()(interactive)
+		    (when (get-buffer "config.org") (save-buffer "config.org"))
+		    (magit-stage)
+		    (magit-commit)
+		    (magit-push-current-to-upstream)))
+		  
 #+END_SRC
