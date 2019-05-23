@@ -165,8 +165,8 @@ k
   (global-set-key (kbd "C-x c p")
 		  (lambda()(interactive)
 		    (when (get-buffer "config.org") (save-buffer "config.org"))
-		    (magit-stage)
-		    (magit-commit)
+		    (magit-stage-file "config.org")
+		    (magit-commit "Automagitally commited")
 		    (magit-push-current-to-upstream)))
 		  
 #+END_SRC
