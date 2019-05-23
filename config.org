@@ -158,19 +158,18 @@ k
 ** Configuration based keybinds
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x c e")
-		  (lambda()(interactive)(find-file "~/.emacs.d/config.org")))
+                  (lambda()(interactive)(find-file "~/.emacs.d/config.org")))
   (global-set-key (kbd "C-x c r")
-		  (lambda()(interactive)
-		    (when (get-buffer "config.org") (save-buffer "config.org"))
-		    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))))
+                  (lambda()(interactive)
+                    (when (get-buffer "config.org") (save-buffer "config.org"))
+                    (org-babel-load-file (expand-file-name "~/.emacs.d/config.org"))))
   (global-set-key (kbd "C-x c p")
-		  (lambda()(interactive)
-		    (when (get-buffer "config.org") (save-buffer "config.org"))
-		    (magit-call-git "add" "config.org")
-		    (magit-call-git "add" "snippets/*")
-		    (magit-call-git "commit" "-m" "Automagitally commited")
-		    (magit-call-git "push" "origin")
-		    (magit-refresh)))
+                  (lambda()(interactive)
+                    (when (get-buffer "config.org") (save-buffer "config.org"))
+                    (magit-stage-modified)
+                    (magit-call-git "commit" "-m" "Automagitally commited")
+                    (magit-call-git "push" "origin")
+                    (magit-refresh)))
 
 #+END_SRC
 ** copy line
