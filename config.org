@@ -1,4 +1,19 @@
 #+AUTHOR: Lani Willrich
+#+TITLE Lani's Emacs
+* EXWM
+** Basic setup
+#+BEGIN_SRC emacs-lisp
+  (use-package exwm)
+  (require 'exwm-randr)
+  (require 'exwm-config)
+  (setq exwm-randr-workspace-output-plist '(0 "DP-2" 1 "DP-0"))
+  (exwm-randr-enable)
+  (exwm-config-default)
+#+END_SRC
+** Launching
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-d") 'async-shell-command)
+#+END_SRC
 * Aesthetic
 ** modelines lines and columns
 #+BEGIN_SRC emacs-lisp
@@ -119,6 +134,14 @@
   (use-package swiper)
   (global-set-key (kbd "C-s") 'swiper)
 #+END_SRC
+** Expand region
+#+BEGIN_SRC emacs-lisp
+  (use-package expand-region)
+  (global-set-key (kbd "C-q") 'er/expand-region)
+
+  (use-package mark-multiple)
+  (global-set-key (kbd "C-c q") 'mark-next-like-this) 
+#+END_SRC
 * Terminal
 ** Ansi-term keybind
 #+BEGIN_SRC emacs-lisp
@@ -222,4 +245,5 @@ k
 #+BEGIN_SRC emacs-lisp
   (use-package magit)
 #+END_SRC
+
 
