@@ -1,5 +1,5 @@
 #+AUTHOR: Lani Willrich
-#+TITLE Lani's Emacs
+#+TITLE: Lani's Emacs
 * EXWM
 ** Basic setup
 #+BEGIN_SRC emacs-lisp
@@ -12,24 +12,30 @@
 #+END_SRC
 ** Launching
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "M-d") 'async-shell-command)
+  (global-set-key (kbd "s-d") 'async-shell-command)
 #+END_SRC
-* Aesthetic
-** modelines lines and columns
+* A E S T H E T I C
+** Modelines lines and columns
 #+BEGIN_SRC emacs-lisp
   (line-number-mode 1)
   (column-number-mode 1)
 #+END_SRC
-** Line numbers and highlighting
+** Highlighting
 #+BEGIN_SRC emacs-lisp
 (when window-system (global-hl-line-mode t))
 (when window-system (global-prettify-symbols-mode t))
-(global-display-line-numbers-mode)
+#+END_SRC
+** Line numbers
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 #+END_SRC
 ** Themes
 #+BEGIN_SRC emacs-lisp
-(use-package alect-themes)
-(load-theme 'alect-dark-alt t)
+  (defadvice load-theme (before theme-dont-propagate activate)
+    (mapcar #'disable-theme custom-enabled-themes))
+  (use-package alect-themes)
+  (use-package zenburn-theme)
+  (load-theme 'zenburn t)
 #+END_SRC
 
 ** Rainbow
@@ -68,6 +74,10 @@
 ** better source editing
 #+BEGIN_SRC emacs-lisp
   (setq org-src-window-setup 'current-window)
+#+END_SRC
+** Fix image width issues
+#+BEGIN_SRC emacs-lisp
+  (setq org-image-actual-width nil)
 #+END_SRC
 * Functionality
 ** Kill ring menu
@@ -160,7 +170,6 @@
 #+BEGIN_SRC emacs-lisp
   (setq inhibit-x-resources t)
 #+END_SRC
-k
 * Custom Functions
 ** window splits
 #+BEGIN_SRC emacs-lisp
@@ -245,5 +254,3 @@ k
 #+BEGIN_SRC emacs-lisp
   (use-package magit)
 #+END_SRC
-
-
