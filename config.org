@@ -59,17 +59,21 @@ So many themes, I can't choose. Right now I'm using zerodark but I have some of 
 #+END_SRC
 
 ** Rainbow
-Two cool packages. One of them highlights hex colors, for example #f00ff0 in the color they represent, and the other highlights matching parens. Really useful for elisp
+This package highlights hex colors, for example #fecf6a in the color they represent.
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode)
   (define-globalized-minor-mode global-rainbow-mode rainbow-mode
     (lambda () (rainbow-mode 1)))
   (global-rainbow-mode 1)
+#+END_SRC
+** Rainbow Delims
+This package highlights pairs of parenthesis in different colors so you can see how they line up. This is a borderline necessity for anything emacs lisp
+#+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters)
   (rainbow-delimiters-mode 1)
 #+END_SRC
 ** Dashboard
-Package called dashboard, sets up a startup screen.
+Package called dashboard, sets up a startup screen with my recently used projects.
 #+BEGIN_SRC emacs-lisp
   (use-package dashboard)
   (dashboard-setup-startup-hook)
