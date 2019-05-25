@@ -47,7 +47,7 @@ Display line numbers on the side of the buffer, but only in prog mode (otherwise
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 #+END_SRC
 ** Themes
-So many themes, I can't choose. Right now I'm using zerodark but I can switch any time with ~M-x load-theme~
+So many themes, I can't choose. Right now I'm using zerodark but I have some of my favorite old themes installed so I can switch any time with ~M-x load-theme~
 #+BEGIN_SRC emacs-lisp
   (defadvice load-theme (before theme-dont-propagate activate)
     (mapcar #'disable-theme custom-enabled-themes))
