@@ -77,7 +77,7 @@ static char *gnus-pointer[] = {
  '(org-agenda-files (quote ("/home/lani/org/todo.org")))
  '(package-selected-packages
    (quote
-    (gruvbox-theme zerodark-theme zenburn-theme zenburn exwm mark-multiple expand-region swiper spaceline popup-kill-ring yasnippet-snippets yasnippet company-irony company alect-themes alect-dark-alt alec-dark-alt sudo-edit rainbow-delimiters switch-window rainbow-mode avy magit helm-projectile projectile helm dracula-theme use-package)))
+    (pretty-mode gruvbox-theme zerodark-theme zenburn-theme zenburn exwm mark-multiple expand-region swiper spaceline popup-kill-ring yasnippet-snippets yasnippet company-irony company alect-themes alect-dark-alt alec-dark-alt sudo-edit rainbow-delimiters switch-window rainbow-mode avy magit helm-projectile projectile helm dracula-theme use-package)))
  '(pdf-view-midnight-colors (quote ("#fdf4c1" . "#32302f")))
  '(size-indication-mode t)
  '(vc-annotate-background "#2B2B2B")

@@ -40,7 +40,8 @@ This just highlights whatever line your cursor is on. I may disable it
 ** Prettify symbols
 Really nice package that turns text symbols into their unicode equivalents
 #+BEGIN_SRC emacs-lisp
-  (when window-system (global-prettify-symbols-mode t))
+  (use-package pretty-mode)
+  (when window-system (global-pretty-mode t))
 #+END_SRC
 ** Line numbers
 Display line numbers on the side of the buffer, but only in prog mode (otherwise you run into issues with, for example, ansi-term)
