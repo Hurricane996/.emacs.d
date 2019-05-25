@@ -5,6 +5,8 @@
 config.el
 *.eld
 tramp
+recentf
+network-security.data
 
 # Packaging
 .cask
@@ -17,6 +19,9 @@ backups/
 elpa/
 eshel/
 url/
+games/
+transient/
+
 # Undo-tree save-files
 *.~undo-tree
 # OS Specific
