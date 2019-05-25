@@ -1,7 +1,15 @@
 #+AUTHOR: Lani Willrich
 #+TITLE: Lani's Emacs
+* Intro
+This is my emacs configuration. It's an org-mode document which gets parsed into an elisp file via ~org-babel~. The init.el file is really short but it shows how to do this.
+* Credits
+Most of this was stolen from uncle dave's emacs. He has some really nice youtube tutorials [[https://www.youtube.com/playlist?list=PLX2044Ew-UVVv31a0-Qn3dA6Sd_-NyA1n][here]]. You can find his emacs config [[https://github.com/daedreth/UncleDavesEmacs][here]].
+* Installation
+To automatically install this, simply run ~git clone https://github.com/Hurricane996/.emacs.d/~ in your home directory. Make sure your emacs.d is empty. Otherwise, you can copy and paste bits and pieces of this config file into your config file.
 * EXWM
+Exwm is my new window manager. It's kind of awkward but that's just because I need to configure it more. I really like it
 ** Basic setup
+This is a hodgepodge of stuff and I really need to organize this. I also need to figure out how to make the EXWM Randr Stuff system dependent but I'm too lazy
 #+BEGIN_SRC emacs-lisp
   (use-package exwm)
   (require 'exwm-randr)
@@ -10,35 +18,48 @@
   (exwm-randr-enable)
   (exwm-config-default)
 #+END_SRC
-** Launching
+** Keybinds
+I need to add to this. More Super-key functions would be nice to reduce all the mouse use I have to do
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "s-d") 'async-shell-command)
 #+END_SRC
 * A E S T H E T I C
+Various asthetic changes really make a difference when you're staring at a screen all day
 ** Modelines lines and columns
+This just fixes the line/column number display in the modeline
 #+BEGIN_SRC emacs-lisp
   (line-number-mode 1)
   (column-number-mode 1)
 #+END_SRC
-** Highlighting
+** Highlights the current line 
+This just highlights whatever line your cursor is on. I may disable it
 #+BEGIN_SRC emacs-lisp
-(when window-system (global-hl-line-mode t))
-(when window-system (global-prettify-symbols-mode t))
+  (when window-system (global-hl-line-mode t))
+#+END_SRC
+** Prettify symbols
+Really nice package that turns text symbols into their unicode equivalents
+#+BEGIN_SRC emacs-lisp
+  (when window-system (global-prettify-symbols-mode t))
 #+END_SRC
 ** Line numbers
+Display line numbers on the side of the buffer, but only in prog mode (otherwise you run into issues with, for example, ansi-term)
 #+BEGIN_SRC emacs-lisp
   (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 #+END_SRC
 ** Themes
+So many themes, I can't choose. Right now I'm using zerodark but I can switch any time with ~M-x load-theme~
 #+BEGIN_SRC emacs-lisp
   (defadvice load-theme (before theme-dont-propagate activate)
     (mapcar #'disable-theme custom-enabled-themes))
   (use-package alect-themes)
   (use-package zenburn-theme)
-  (load-theme 'zenburn t)
+  (use-package zerodark-theme)
+  (use-package gruvbox-theme)
+  (load-theme 'zerodark t)
 #+END_SRC
 
 ** Rainbow
+Two cool packages. One of them highlights hex colors, for example #f00ff0 in the color they represent, and the other highlights matching parens. Really useful for elisp
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-mode)
   (define-globalized-minor-mode global-rainbow-mode rainbow-mode
@@ -48,6 +69,7 @@
   (rainbow-delimiters-mode 1)
 #+END_SRC
 ** Dashboard
+Package called dashboard, sets up a startup screen.
 #+BEGIN_SRC emacs-lisp
   (use-package dashboard)
   (dashboard-setup-startup-hook)
@@ -55,10 +77,12 @@
   (setq dashboard-banner-logo-title "Howdy Lani!")
 #+END_SRC
 ** Clock
+Clock in the modeline. Not too complex
 #+BEGIN_SRC emacs-lisp
   (display-time-mode 1)
 #+END_SRC
 ** spaceline
+Restyles the modeline to look more like spacemacs.
 #+BEGIN_SRC emacs-lisp
   (use-package spaceline)
   (require 'spaceline-config)
@@ -66,36 +90,45 @@
   (spaceline-spacemacs-theme)
 #+END_SRC
 * Org
+Org mode is really nice, its the reason I use emacs. This document is written in orgmode
 ** Org Bullets
+Changes the ugly asterisks to nice pretty bullets.
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
     :config (add-hook 'org-mode-hook (lambda()(org-bullets-mode))))
 #+END_SRC
-** better source editing
+** Better source editing
+Makes it so when you edit embedded source code, you edit it in the same window instead of opening a new one
 #+BEGIN_SRC emacs-lisp
   (setq org-src-window-setup 'current-window)
 #+END_SRC
 ** Fix image width issues
+Org mode annoyingly displays images at their actual size no matter what. This lets you view images at the size described in the annotations
 #+BEGIN_SRC emacs-lisp
   (setq org-image-actual-width nil)
 #+END_SRC
 * Functionality
+Some changes that make emacs function better
 ** Kill ring menu
+This gives you a list of everything you've copied when you paste with ~M-y~
 #+BEGIN_SRC emacs-lisp
   (use-package popup-kill-ring)
   (global-set-key (kbd "M-y") 'popup-kill-ring)
 #+END_SRC
 ** Space tabbing
+This lets you press the tab key and have it auto indent using spaces instead of tabs
 #+BEGIN_SRC emacs-lisp
 (setq indent-tabs-mode nil)
 #+END_SRC
 ** No more backups
+Emacs makes annoying backup files. This gets rid of them
 #+BEGIN_SRC emacs-lisp
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq create-lockfiles  nil)
 #+END_SRC
 ** Remove all the junk
+This gets rid of all the crap (have to watch my language because this is on my github and my github is on my resume) emacs spawns by default
 #+BEGIN_SRC emacs-lisp
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
@@ -103,34 +136,41 @@
 (setq inhibit-splash-screen t)
 #+END_SRC
 ** y-or-n-p
+Any yes/no prompts are turned into y/n prompts
 #+BEGIN_SRC emacs-lisp
 (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 ** Subwords
+I don't remember what this does, should have commented it when I added it
 #+BEGIN_SRC emacs-lisp
   (global-subword-mode 1)
 
 #+END_SRC
 ** Buffer eval
+This lets you run the current buffer as elisp code
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-S-s") 'eval-buffer)
 #+END_SRC
 ** Gets rid of C-z
+~C-z~ does something annoying but I can't remember what because I got rid of it so long ago
 #+BEGIN_SRC emacs-lisp
 (global-unset-key (kbd "C-z") ) 
 #+END_SRC
 ** Fixes C-k
+Allows ~C-k~ to kill entire lines instead of just upto the end of the line
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-k") 'kill-whole-line)
 #+END_SRC
 ** Helm 
+Helm is really nice for buffer auto completion. This sets it up to be used globally
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(use-package helm)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(helm-mode 1)
+  (use-package helm)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (helm-mode 1)
 #+END_SRC
 ** Switch Window
+This is a package that lets you switch windows without using the broken ~S-<arrow keys>~ or the really annoying ~other-window~
 #+BEGIN_SRC emacs-lisp
   (use-package switch-window)
   (setq switch-window-input-style 'minibuffer)
@@ -140,38 +180,44 @@
   (global-set-key (kbd "C-x o") 'switch-window)
 #+END_SRC
 ** Swiper
+This is a package that makes finding and replacing not bad
 #+BEGIN_SRC emacs-lisp
   (use-package swiper)
   (global-set-key (kbd "C-s") 'swiper)
 #+END_SRC
 ** Expand region
+This lets you take the selected region and make it bigger in a logical way
 #+BEGIN_SRC emacs-lisp
   (use-package expand-region)
   (global-set-key (kbd "C-q") 'er/expand-region)
-
+#+END_SRC
+** Mark multiple
+Mark multiple selections that are the same so you can edit them all
+#+BEGIN_SRC emacs-lisp
   (use-package mark-multiple)
   (global-set-key (kbd "C-c q") 'mark-next-like-this) 
 #+END_SRC
 * Terminal
+I use a terminal called ansi-term. It works about as well as any windowed terminal emulator
 ** Ansi-term keybind
+This sets up two keybinds, one for tty use and one for exwm use.
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "M-RET") 'ansi-term)
+  (global-set-key (kbd "s-RET") 'ansi-term)
 
 #+END_SRC
 ** Force bash
+This forces the terminal to use ~/bin/bash~ instead of asking every time
 #+BEGIN_SRC emacs-lisp
   (defvar term-sh "/bin/bash")
   (defadvice ansi-term (before force-bash)
     (interactive (list term-sh)))
   (ad-activate 'ansi-term)
 #+END_SRC
-* Bug Fixes
-** Random bug to do with LARBS and Xresources
-#+BEGIN_SRC emacs-lisp
-  (setq inhibit-x-resources t)
-#+END_SRC
 * Custom Functions
+Some functionality I had to add for myself. I may move this function around
 ** window splits
+This makes it so when you split a window, you jump to the new window
 #+BEGIN_SRC emacs-lisp
   (defun split-and-follow-horizontally ()
     (interactive)
@@ -188,6 +234,7 @@
   (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 #+END_SRC
 ** Configuration based keybinds
+This lets me edit, reload, and push my configuration in one key
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-x c e")
                   (lambda()(interactive)(find-file "~/.emacs.d/config.org")))
@@ -205,6 +252,7 @@
 
 #+END_SRC
 ** copy line
+This copies a line, killing it without getting rid of it
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "M-k") (lambda()(interactive)
                                 (save-excursion)
@@ -214,7 +262,9 @@
                                   (point-at-eol)))))
 #+END_SRC
 * Code
+Functionality for programming
 ** yasnippet
+Code snippets, these autoexpand and are really nice
 #+BEGIN_SRC emacs-lisp
   (use-package yasnippet)
   (use-package yasnippet-snippets)
@@ -223,6 +273,7 @@
 #+END_SRC
 
 ** Company
+Auto completion, currently only for elisp but I plan to make it work for other languages as well
 #+BEGIN_SRC emacs-lisp
   (use-package company)
   (setq company-idle-delay 0)
@@ -236,11 +287,13 @@
   (add-hook 'c-mode-hook 'company-mode)
 #+END_SRC
 ** Sudo edit
+Lets you edit a file as root, just by using that keybind in a buffer with that file open
 #+BEGIN_SRC emacs-lisp
   (use-package sudo-edit)
   (global-set-key (kbd "C-x M-f") 'sudo-edit)
 #+END_SRC
 ** Projectile
+Package that sorts files into projects based on git projects. Really useful.
 #+BEGIN_SRC emacs-lisp 
 (use-package projectile)
 (use-package helm-projectile)
@@ -251,6 +304,7 @@
 (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
 #+END_SRC 
 ** Magit
+Git integration for emacs. The defaults are sane so there's no extra config.
 #+BEGIN_SRC emacs-lisp
   (use-package magit)
 #+END_SRC
