@@ -1,5 +1,6 @@
 #+AUTHOR: Lani Willrich
 #+TITLE: Lani's Emacs
+#+TOC: Headlines 2
 * Intro
 This is my emacs configuration. It's an org-mode document which gets parsed into an elisp file via ~org-babel~. The init.el file is really short but it shows how to do this.
 * Credits
