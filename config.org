@@ -208,7 +208,7 @@ I use a terminal called ansi-term. It works about as well as any windowed termin
 This sets up two keybinds, one for tty use and one for exwm use.
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "M-RET") 'ansi-term)
-  (global-set-key (kbd "s-RET") 'ansi-term)
+  (global-set-key (kbd "<s-return>") 'ansi-term)
 
 #+END_SRC
 ** Force bash

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: global-setkey
+# key: gsk
+# --
+(global-set-key (kbd \"$1\")$2)
+$0
