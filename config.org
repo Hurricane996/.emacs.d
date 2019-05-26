@@ -113,6 +113,11 @@ Org mode annoyingly displays images at their actual size no matter what. This le
 #+BEGIN_SRC emacs-lisp
   (setq org-image-actual-width nil)
 #+END_SRC
+** Async
+This allows us to use asynchronous processes for everything
+#+BEGIN_SRC emacs-lisp
+  (use-package async)
+#+END_SRC
 * Functionality
 Some changes that make emacs function better
 ** Kill ring menu
