@@ -1,4 +1,4 @@
-p#+AUTHOR: Lani Willrich
+#+AUTHOR: Lani Willrich
 #+TITLE: Lani's Emacs
 #+TOC: headlines 2
 * Intro
