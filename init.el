@@ -19,6 +19,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(byte-compile-warnings (quote (mapcar)))
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
  '(custom-safe-themes
@@ -77,7 +78,7 @@ static char *gnus-pointer[] = {
  '(org-agenda-files (quote ("/home/lani/org/todo.org")))
  '(package-selected-packages
    (quote
-    (pretty-mode gruvbox-theme zerodark-theme zenburn-theme zenburn exwm mark-multiple expand-region swiper spaceline popup-kill-ring yasnippet-snippets yasnippet company-irony company alect-themes alect-dark-alt alec-dark-alt sudo-edit rainbow-delimiters switch-window rainbow-mode avy magit helm-projectile projectile helm dracula-theme use-package)))
+    (elcord nyan-mode helm-tramp pretty-mode gruvbox-theme zerodark-theme zenburn-theme zenburn exwm mark-multiple expand-region swiper spaceline popup-kill-ring yasnippet-snippets yasnippet company-irony company alect-themes alect-dark-alt alec-dark-alt sudo-edit rainbow-delimiters switch-window rainbow-mode avy magit helm-projectile projectile helm dracula-theme use-package)))
  '(pdf-view-midnight-colors (quote ("#fdf4c1" . "#32302f")))
  '(size-indication-mode t)
  '(vc-annotate-background "#2B2B2B")

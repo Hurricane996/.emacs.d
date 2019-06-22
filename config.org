@@ -1,4 +1,4 @@
-#+AUTHOR: Lani Willrich
+p#+AUTHOR: Lani Willrich
 #+TITLE: Lani's Emacs
 #+TOC: headlines 2
 * Intro
@@ -8,22 +8,36 @@ Most of this was stolen from uncle dave's emacs. He has some really nice youtube
 * Installation
 To automatically install this, simply run ~git clone https://github.com/Hurricane996/.emacs.d/~ in your home directory. Make sure your emacs.d is empty. Otherwise, you can copy and paste bits and pieces of this config file into your config file.
 * EXWM
-Exwm is my new window manager. It's kind of awkward but that's just because I need to configure it more. I really like it
+I sometimes like to use the EXWM window manager. I'm sticking with i3 on my home gaming machine but if I ever get a machine that I only use for programming I may switch back. I'm leaving the config here either way, though I do setup some org headers to stop it from being compiled
+** Allow focus to follow the mouse
+I always found it quite painful to move around without this
+#+BEGIN_SRC emacs-lisp
+  (setq mouse-autoselect-window t
+	focus-follows-mouse t)
+#+END_SRC
 ** Basic setup
 This is a hodgepodge of stuff and I really need to organize this. I also need to figure out how to make the EXWM Randr Stuff system dependent but I'm too lazy
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :exports none
+(when (= 2 3)
   (use-package exwm)
   (require 'exwm-randr)
   (require 'exwm-config)
   (setq exwm-randr-workspace-output-plist '(0 "DP-2" 1 "DP-0"))
   (exwm-randr-enable)
   (exwm-config-default)
+)
 #+END_SRC
 ** Keybinds
 I need to add to this. More Super-key functions would be nice to reduce all the mouse use I have to do
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "s-d") 'async-shell-command)
 #+END_SRC
+** Start programs in char mode
+EXWM distinguishes between two minor modes, char and line. I'm not entirely sure what the difference is but it has something to do with sending key combos.
+#+BEGIN_SRC emacs-lisp
+  (setq exwm-manage-configurations '((t char-mode t)))
+#+END_SRC
+
 * A E S T H E T I C
 Various asthetic changes really make a difference when you're staring at a screen all day
 ** Modelines lines and columns
@@ -52,7 +66,7 @@ Display line numbers on the side of the buffer, but only in prog mode (otherwise
 So many themes, I can't choose. Right now I'm using zerodark but I have some of my favorite old themes installed so I can switch any time with ~M-x load-theme~
 #+BEGIN_SRC emacs-lisp
   (defadvice load-theme (before theme-dont-propagate activate)
-    (mapcar #'disable-theme custom-enabled-themes))
+    (mapc #'disable-theme custom-enabled-themes))
   (use-package alect-themes)
   (use-package zenburn-theme)
   (use-package zerodark-theme)
@@ -72,7 +86,11 @@ This package highlights hex colors, for example #fecf6a in the color they repres
 This package highlights pairs of parenthesis in different colors so you can see how they line up. This is a borderline necessity for anything emacs lisp
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters)
-  (rainbow-delimiters-mode 1)
+
+  (define-globalized-minor-mode global-rainbow-delimeters-mode rainbow-delimiters-mode
+    (lambda()(rainbow-delimiters-mode 1)))
+
+  (global-rainbow-delimeters-mode 1)
 #+END_SRC
 ** Dashboard
 Package called dashboard, sets up a startup screen with my recently used projects.
@@ -95,6 +113,21 @@ Restyles the modeline to look more like spacemacs.
   (setq powerline-default-separator (quote arrow))
   (spaceline-spacemacs-theme)
 #+END_SRC
+** Transparency
+Makes it so I can see my beautiful wallpaper
+#+BEGIN_SRC emacs-lisp
+  (set-frame-parameter (selected-frame) 'alpha '(80 . 80))
+#+END_SRC
+** Nyan mode
+#+BEGIN_SRC emacs-lisp
+    (use-package nyan-mode)
+    (define-globalized-minor-mode global-nyan-mode nyan-mode
+      (lambda()
+        (nyan-mode 1)
+        (nyan-start-animation)
+        (nyan-toggle-wavy-trail)))
+    (global-nyan-mode)
+#+END_SRC
 * Org
 Org mode is really nice, its the reason I use emacs. This document is written in orgmode
 ** Org Bullets
@@ -113,10 +146,11 @@ Org mode annoyingly displays images at their actual size no matter what. This le
 #+BEGIN_SRC emacs-lisp
   (setq org-image-actual-width nil)
 #+END_SRC
-** Async
-This allows us to use asynchronous processes for everything
+** Wrap lines
 #+BEGIN_SRC emacs-lisp
-  (use-package async)
+  (add-hook 'org-mode-hook (lambda()
+	    (visual-line-mode)
+	    (org-indent-mode)))
 #+END_SRC
 * Functionality
 Some changes that make emacs function better
@@ -207,6 +241,22 @@ Mark multiple selections that are the same so you can edit them all
 #+BEGIN_SRC emacs-lisp
   (use-package mark-multiple)
   (global-set-key (kbd "C-c q") 'mark-next-like-this) 
+#+END_SRC
+** Avy
+This is a really useful package that lets you jump around by character
+#+BEGIN_SRC emacs-lisp
+  (use-package avy)
+  (global-set-key (kbd "M-s") 'avy-goto-char)
+#+END_SRC
+
+** Create org scratch buffer
+#+BEGIN_SRC emacs-lisp
+  (defun org-scratch ()
+    (interactive)
+    (with-current-buffer
+        (get-buffer-create " *ORG-SCRATCH* ")
+      (org-mode))
+    (switch-to-buffer " *ORG-SCRATCH* "))
 #+END_SRC
 * Terminal
 I use a terminal called ansi-term. It works about as well as any windowed terminal emulator
@@ -318,4 +368,9 @@ Package that sorts files into projects based on git projects. Really useful.
 Git integration for emacs. The defaults are sane so there's no extra config.
 #+BEGIN_SRC emacs-lisp
   (use-package magit)
+#+END_SRC
+** Helm tramp
+This allows you to use ~helm~ to open ~tramp~ connections
+#+BEGIN_SRC emacs-lisp
+  (use-package helm-tramp)
 #+END_SRC
