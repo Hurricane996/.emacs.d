@@ -1,4 +1,4 @@
-#+AUTHOR: Lani Willrich
+r#+AUTHOR: Lani Willrich
 #+TITLE: Lani's Emacs
 #+TOC: headlines 2
 * Intro
@@ -9,12 +9,6 @@ Most of this was stolen from uncle dave's emacs. He has some really nice youtube
 To automatically install this, simply run ~git clone https://github.com/Hurricane996/.emacs.d/~ in your home directory. Make sure your emacs.d is empty. Otherwise, you can copy and paste bits and pieces of this config file into your config file.
 * EXWM
 I sometimes like to use the EXWM window manager. I'm sticking with i3 on my home gaming machine but if I ever get a machine that I only use for programming I may switch back. I'm leaving the config here either way, though I do setup some org headers to stop it from being compiled
-** Allow focus to follow the mouse
-I always found it quite painful to move around without this
-#+BEGIN_SRC emacs-lisp
-  (setq mouse-autoselect-window t
-	focus-follows-mouse t)
-#+END_SRC
 ** Basic setup
 This is a hodgepodge of stuff and I really need to organize this. I also need to figure out how to make the EXWM Randr Stuff system dependent but I'm too lazy
 #+BEGIN_SRC emacs-lisp :exports none
@@ -27,6 +21,13 @@ This is a hodgepodge of stuff and I really need to organize this. I also need to
   (exwm-config-default)
 )
 #+END_SRC
+** Allow focus to follow the mouse
+I always found it quite painful to move around without this
+#+BEGIN_SRC emacs-lisp
+  (setq mouse-autoselect-window t
+	focus-follows-mouse t)
+#+END_SRC
+
 ** Keybinds
 I need to add to this. More Super-key functions would be nice to reduce all the mouse use I have to do
 #+BEGIN_SRC emacs-lisp
@@ -50,12 +51,6 @@ This just fixes the line/column number display in the modeline
 This just highlights whatever line your cursor is on. I may disable it
 #+BEGIN_SRC emacs-lisp
   (when window-system (global-hl-line-mode t))
-#+END_SRC
-** Prettify symbols
-Really nice package that turns text symbols into their unicode equivalents
-#+BEGIN_SRC emacs-lisp
-  (use-package pretty-mode)
-  (when window-system (global-pretty-mode t))
 #+END_SRC
 ** Line numbers
 Display line numbers on the side of the buffer, but only in prog mode (otherwise you run into issues with, for example, ansi-term)
@@ -116,7 +111,7 @@ Restyles the modeline to look more like spacemacs.
 ** Transparency
 Makes it so I can see my beautiful wallpaper
 #+BEGIN_SRC emacs-lisp
-  (set-frame-parameter (selected-frame) 'alpha '(80 . 80))
+  (set-frame-parameter (selected-frame) 'alpha '(80 . 60))
 #+END_SRC
 ** Nyan mode
 #+BEGIN_SRC emacs-lisp
