@@ -27,5 +27,6 @@ transient/
 # OS Specific
 .DS_Store
 
-# custom
+# machine-specific files
 custom.el
+machine-specific.el

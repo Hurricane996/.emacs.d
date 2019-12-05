@@ -7,38 +7,6 @@ This is my emacs configuration. It's an org-mode document which gets parsed into
 Most of this was stolen from uncle dave's emacs. He has some really nice youtube tutorials [[https://www.youtube.com/playlist?list=PLX2044Ew-UVVv31a0-Qn3dA6Sd_-NyA1n][here]]. You can find his emacs config [[https://github.com/daedreth/UncleDavesEmacs][here]].
 * Installation
 To automatically install this, simply run ~git clone https://github.com/Hurricane996/.emacs.d/~ in your home directory. Make sure your emacs.d is empty. Otherwise, you can copy and paste bits and pieces of this config file into your config file.
-* EXWM
-I sometimes like to use the EXWM window manager. I'm sticking with i3 on my home gaming machine but if I ever get a machine that I only use for programming I may switch back. I'm leaving the config here either way, though I do setup some org headers to stop it from being compiled
-** Basic setup
-This is a hodgepodge of stuff and I really need to organize this. I also need to figure out how to make the EXWM Randr Stuff system dependent but I'm too lazy
-#+BEGIN_SRC emacs-lisp :exports none
-(when (= 2 3)
-  (use-package exwm)
-  (require 'exwm-randr)
-  (require 'exwm-config)
-  (setq exwm-randr-workspace-output-plist '(0 "DP-2" 1 "DP-0"))
-  (exwm-randr-enable)
-  (exwm-config-default)
-)
-#+END_SRC
-** Allow focus to follow the mouse
-I always found it quite painful to move around without this
-#+BEGIN_SRC emacs-lisp
-  (setq mouse-autoselect-window t
-	focus-follows-mouse t)
-#+END_SRC
-
-** Keybinds
-I need to add to this. More Super-key functions would be nice to reduce all the mouse use I have to do
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "s-d") 'async-shell-command)
-#+END_SRC
-** Start programs in char mode
-EXWM distinguishes between two minor modes, char and line. I'm not entirely sure what the difference is but it has something to do with sending key combos.
-#+BEGIN_SRC emacs-lisp
-  (setq exwm-manage-configurations '((t char-mode t)))
-#+END_SRC
-
 * A E S T H E T I C
 Various asthetic changes really make a difference when you're staring at a screen all day
 ** Modelines lines and columns
@@ -368,4 +336,11 @@ Git integration for emacs. The defaults are sane so there's no extra config.
 This allows you to use ~helm~ to open ~tramp~ connections
 #+BEGIN_SRC emacs-lisp
   (use-package helm-tramp)
+#+END_SRC
+
+* Machine specific options
+This is a way to set up code that only runs on certain machines. I have =.gitignore='d a file with machine-specific options that can also load various scripts from the =machine-specific= folder.
+#+BEGIN_SRC emacs-lisp
+  (if (file-exists-p "machine-specific.el")
+      (load-file "machine-specific.el"))
 #+END_SRC
