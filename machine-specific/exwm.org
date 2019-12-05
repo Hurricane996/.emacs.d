@@ -1,0 +1,29 @@
+* * EXWM
+If I would like a machine to use exwm, I load this org file in the machine-specific.el
+** Basic setup
+This is a hodgepodge of stuff and I really need to organize this. I also need to figure out how to make the EXWM Randr Stuff system dependent but I'm too lazy
+#+BEGIN_SRC emacs-lisp :exports none
+  (use-package exwm)
+  (require 'exwm-randr)
+  (require 'exwm-config)
+  (setq exwm-randr-workspace-output-plist '(0 "DP-2" 1 "DP-0"))
+  (exwm-randr-enable)
+  (exwm-config-default)
+#+END_SRC
+** Allow focus to follow the mouse
+I always found it quite painful to move around without this
+#+BEGIN_SRC emacs-lisp
+  (setq mouse-autoselect-window t
+	focus-follows-mouse t)
+#+END_SRC
+
+** Keybinds
+I need to add to this. More Super-key functions would be nice to reduce all the mouse use I have to do
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "s-d") 'async-shell-command)
+#+END_SRC
+** Start programs in char mode
+EXWM distinguishes between two minor modes, char and line. I'm not entirely sure what the difference is but it has something to do with sending key combos.
+#+BEGIN_SRC emacs-lisp
+  (setq exwm-manage-configurations '((t char-mode t)))
+#+END_SRC
