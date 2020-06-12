@@ -1,4 +1,4 @@
-wpr#+AUTHOR: Lani Willrich
+#+AUTHOR: Lani Willrich
 #+TITLE: Lani's Emacs
 #+TOC: headlines 2
 * Intro
@@ -227,7 +227,7 @@ This is a really useful package that lets you jump around by character
 ** Change Window Size
 Just some keybinds for vertically shrinking windows
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-x =") 'shrink-window)
+(global-set-key (kbd "C-x -") 'shrink-window)
 #+END_SRC
 * Terminal
 I use a terminal called ansi-term. It works about as well as any windowed terminal emulator
