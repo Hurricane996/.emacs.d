@@ -1,4 +1,4 @@
-pr#+AUTHOR: Lani Willrich
+wpr#+AUTHOR: Lani Willrich
 #+TITLE: Lani's Emacs
 #+TOC: headlines 2
 * Intro
@@ -40,28 +40,25 @@ So many themes, I can't choose. Right now I'm using zerodark but I have some of 
 ** Rainbow
 This package highlights hex colors, for example #fecf6a in the color they represent.
 #+BEGIN_SRC emacs-lisp
-  (use-package rainbow-mode)
-  (define-globalized-minor-mode global-rainbow-mode rainbow-mode
-    (lambda () (rainbow-mode 1)))
-  (global-rainbow-mode 1)
+  (use-package rainbow-mode
+    :config
+    (rainbow-mode 1))
 #+END_SRC
 ** Rainbow Delims
 This package highlights pairs of parenthesis in different colors so you can see how they line up. This is a borderline necessity for anything emacs lisp
 #+BEGIN_SRC emacs-lisp
-  (use-package rainbow-delimiters)
-
-  (define-globalized-minor-mode global-rainbow-delimeters-mode rainbow-delimiters-mode
-    (lambda()(rainbow-delimiters-mode 1)))
-
-  (global-rainbow-delimeters-mode 1)
+  (use-package rainbow-delimiters
+    :config
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 #+END_SRC
 ** Dashboard
 Package called dashboard, sets up a startup screen with my recently used projects.
 #+BEGIN_SRC emacs-lisp
-  (use-package dashboard)
-  (dashboard-setup-startup-hook)
-  (setq dashboard-items '((recents . 10)))
-  (setq dashboard-banner-logo-title "Howdy Lani!")
+  (use-package dashboard
+    :config
+    (dashboard-setup-startup-hook)
+    (setq dashboard-items '((recents . 10)))
+    (setq dashboard-banner-logo-title "Howdy Lani!"))
 #+END_SRC
 ** Clock
 Clock in the modeline. Not too complex
@@ -71,25 +68,24 @@ Clock in the modeline. Not too complex
 ** spaceline
 Restyles the modeline to look more like spacemacs.
 #+BEGIN_SRC emacs-lisp
-  (use-package spaceline)
-  (require 'spaceline-config)
-  (setq powerline-default-separator (quote arrow))
-  (spaceline-spacemacs-theme)
+  (use-package spaceline
+    :config
+    (require 'spaceline-config)
+    (setq powerline-default-separator (quote arrow))
+    (spaceline-spacemacs-theme))
 #+END_SRC
 ** Transparency
 Makes it so I can see my beautiful wallpaper
 #+BEGIN_SRC emacs-lisp
-  (set-frame-parameter (selected-frame) 'alpha '(80 . 60))
+  (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
 #+END_SRC
 ** Nyan mode
 #+BEGIN_SRC emacs-lisp
-    (use-package nyan-mode)
-    (define-globalized-minor-mode global-nyan-mode nyan-mode
-      (lambda()
-        (nyan-mode 1)
-        (nyan-start-animation)
-        (nyan-toggle-wavy-trail)))
-    (global-nyan-mode)
+  (use-package nyan-mode
+    :config
+    (nyan-mode 1)
+    (nyan-start-animation)
+    (nyan-toggle-wavy-trail))
 #+END_SRC
 * Org
 Org mode is really nice, its the reason I use emacs. This document is written in orgmode
@@ -120,8 +116,9 @@ Some changes that make emacs function better
 ** Kill ring menu
 This gives you a list of everything you've copied when you paste with ~M-y~
 #+BEGIN_SRC emacs-lisp
-  (use-package popup-kill-ring)
-  (global-set-key (kbd "M-y") 'popup-kill-ring)
+  (use-package popup-kill-ring
+    :config
+    (global-set-key (kbd "M-y") 'popup-kill-ring))
 #+END_SRC
 ** Space tabbing
 This lets you press the tab key and have it auto indent using spaces instead of tabs
@@ -172,44 +169,50 @@ Allows ~C-k~ to kill entire lines instead of just upto the end of the line
 ** Helm 
 Helm is really nice for buffer auto completion. This sets it up to be used globally
 #+BEGIN_SRC emacs-lisp
-  (use-package helm)
-  (global-set-key (kbd "C-x C-f") 'helm-find-files)
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (helm-mode 1)
+  (use-package helm
+    :config
+    (global-set-key (kbd "C-x C-f") 'helm-find-files)
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (helm-mode 1))
 #+END_SRC
 ** Switch Window
 This is a package that lets you switch windows without using the broken ~S-<arrow keys>~ or the really annoying ~other-window~
 #+BEGIN_SRC emacs-lisp
-  (use-package switch-window)
-  (setq switch-window-input-style 'minibuffer)
-  (setq switch-window-increase 4)
-  (setq switch-window-threshold 2)
-  (setq switch-window-shortcut-style 'qwerty)
-  (global-set-key (kbd "C-x o") 'switch-window)
+  (use-package switch-window
+    :config
+    (setq switch-window-input-style 'minibuffer)
+    (setq switch-window-increase 4)
+    (setq switch-window-threshold 2)
+    (setq switch-window-shortcut-style 'qwerty)
+    (global-set-key (kbd "C-x o") 'switch-window))
 #+END_SRC
 ** Swiper
 This is a package that makes finding and replacing not bad
 #+BEGIN_SRC emacs-lisp
-  (use-package swiper)
-  (global-set-key (kbd "C-s") 'swiper)
+  (use-package swiper
+    :config
+    (global-set-key (kbd "C-s") 'swiper))
 #+END_SRC
 ** Expand region
 This lets you take the selected region and make it bigger in a logical way
 #+BEGIN_SRC emacs-lisp
-  (use-package expand-region)
-  (global-set-key (kbd "C-q") 'er/expand-region)
+  (use-package expand-region
+    :config
+    (global-set-key (kbd "C-q") 'er/expand-region))
 #+END_SRC
 ** Mark multiple
 Mark multiple selections that are the same so you can edit them all
 #+BEGIN_SRC emacs-lisp
-  (use-package mark-multiple)
-  (global-set-key (kbd "C-c q") 'mark-next-like-this) 
+  (use-package mark-multiple
+    :config
+    (global-set-key (kbd "C-c q") 'mark-next-like-this))
 #+END_SRC
 ** Avy
 This is a really useful package that lets you jump around by character
 #+BEGIN_SRC emacs-lisp
-  (use-package avy)
-  (global-set-key (kbd "M-s") 'avy-goto-char)
+  (use-package avy
+    :config
+    (global-set-key (kbd "M-s") 'avy-goto-char))
 #+END_SRC
 
 ** Create org scratch buffer
@@ -220,6 +223,11 @@ This is a really useful package that lets you jump around by character
         (get-buffer-create " *ORG-SCRATCH* ")
       (org-mode))
     (switch-to-buffer " *ORG-SCRATCH* "))
+#+END_SRC
+** Change Window Size
+Just some keybinds for vertically shrinking windows
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x =") 'shrink-window)
 #+END_SRC
 * Terminal
 I use a terminal called ansi-term. It works about as well as any windowed terminal emulator
@@ -290,42 +298,56 @@ Functionality for programming
 ** yasnippet
 Code snippets, these autoexpand and are really nice
 #+BEGIN_SRC emacs-lisp
-  (use-package yasnippet)
-  (use-package yasnippet-snippets)
-  (yas-reload-all)
-  (yas-global-mode 1)
+  (use-package yasnippet
+    :config
+    (yas-reload-all)
+    (yas-global-mode 1))
+  (use-package yasnippet-snippets
+    :after yasnippet)
+
 #+END_SRC
 
 ** Company
 Auto completion, currently only for elisp but I plan to make it work for other languages as well
 #+BEGIN_SRC emacs-lisp
-  (use-package company)
-  (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 3)
+  (use-package company
+    :config
+    (setq company-idle-delay 0)
+    (setq company-minimum-prefix-length 3)
 
-  (add-to-list 'company-backends 'company-elisp)
-  (add-to-list 'company-backends 'company-clang)
+    (add-to-list 'company-backends 'company-elisp)
+    (add-to-list 'company-backends 'company-clang)
 
-  (add-hook 'emacs-lisp-mode-hook 'company-mode)
-  (add-hook 'c++-mode-hook 'company-mode)
-  (add-hook 'c-mode-hook 'company-mode)
+    (add-hook 'emacs-lisp-mode-hook 'company-mode)
+    (add-hook 'c++-mode-hook 'company-mode)
+    (add-hook 'c-mode-hook 'company-mode))
+
+  (use-package omnisharp
+    :after company
+    :config
+    (add-hook 'csharp-mode-hook 'omnisharp-mode)
+    (add-to-list 'company-backends 'company-omnisharp))
 #+END_SRC
 ** Sudo edit
 Lets you edit a file as root, just by using that keybind in a buffer with that file open
 #+BEGIN_SRC emacs-lisp
-  (use-package sudo-edit)
-  (global-set-key (kbd "C-x M-f") 'sudo-edit)
+  (use-package sudo-edit
+    :config
+    (global-set-key (kbd "C-x M-f") 'sudo-edit))
 #+END_SRC
 ** Projectile
 Package that sorts files into projects based on git projects. Really useful.
 #+BEGIN_SRC emacs-lisp 
-(use-package projectile)
-(use-package helm-projectile)
-(projectile-global-mode)
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-(helm-projectile-on)
-(define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map)
+  (use-package projectile
+    :config
+    (projectile-global-mode)
+    (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
+  (use-package helm-projectile
+    :after projectile
+    :config
+    (setq projectile-completion-system 'helm)
+    (helm-projectile-on))
+
 #+END_SRC 
 ** Magit
 Git integration for emacs. The defaults are sane so there's no extra config.
@@ -344,3 +366,4 @@ This is a way to set up code that only runs on certain machines. I have =.gitign
   (if (file-exists-p "machine-specific.el")
       (load-file "machine-specific.el"))
 #+END_SRC
+e
