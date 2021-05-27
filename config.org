@@ -1,5 +1,5 @@
-#+AUTHOR: Lani Willrich
-#+TITLE: Lani's Emacs
+#+AUTHOR: Levi Willrich
+#+TITLE: Levi's Emacs
 #+TOC: headlines 2
 * Intro
 This is my emacs configuration. It's an org-mode document which gets parsed into an elisp file via ~org-babel~. The init.el file is really short but it shows how to do this.
@@ -78,14 +78,6 @@ Restyles the modeline to look more like spacemacs.
 Makes it so I can see my beautiful wallpaper
 #+BEGIN_SRC emacs-lisp
   (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
-#+END_SRC
-** Nyan mode
-#+BEGIN_SRC emacs-lisp
-  (use-package nyan-mode
-    :config
-    (nyan-mode 1)
-    (nyan-start-animation)
-    (nyan-toggle-wavy-trail))
 #+END_SRC
 * Org
 Org mode is really nice, its the reason I use emacs. This document is written in orgmode
@@ -359,6 +351,12 @@ This allows you to use ~helm~ to open ~tramp~ connections
 #+BEGIN_SRC emacs-lisp
   (use-package helm-tramp)
 #+END_SRC
+
+** Rust
+#+begin_src emacs-lisp
+  (use-package lsp-mode)
+  (use-package rustic)
+#+end_src
 
 * Machine specific options
 This is a way to set up code that only runs on certain machines. I have =.gitignore='d a file with machine-specific options that can also load various scripts from the =machine-specific= folder.
